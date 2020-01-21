@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+body {font-family: Arial, Helvetica, sans-serif;}
+* {box-sizing: border-box;}
+
+input[type=text], select, textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-top: 6px;
+  margin-bottom: 16px;
+  resize: vertical;
+}
+
+input[type=submit] {
+  background-color: #4CAF50;
+  color: white;
+  padding: 12px 20px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+input[type=submit]:hover {
+  background-color: #45a049;
+}
+
+.container {
+  border-radius: 5px;
+  background-color: #f2f2f2;
+  padding: 20px;
+}
+</style>
+</head>
+<body>
+
+<h3>Details Form</h3>
+
+<div class="container">
+  <form action="/action_page.php">
+    <label for="age">Age</label>
+    <input type="text" id="age" name="age" placeholder="User's Age..">
+
+    <label for="address">Address</label>
+    <input type="text" id="address" name="address" placeholder="User's Address..">
+
+    <label for="country">Country Origin</label>
+    <input type="text" id="country" name="country" placeholder="User's country..">
+
+    <input type="submit" value="Submit">
+  </form>
+</div>
+
+<script type=text/javascript>
+    $(document).ready(function () {
+        var age = $('#age').val();
+        var address = $('#address').val();
+        var country = $('#country').val();
+    
+        $("#submit").click(function () {
+            $.ajax({
+                type: 'POST',
+                data: {age: age, address: address, country_origin: country},
+                url: "http://0.0.0.0:5000/api/Details",
+                success: added,
+                error: showError
+            });
+        });
+    }); 
+</script>
+
+</body>
+</html>
